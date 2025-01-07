@@ -6,7 +6,7 @@ import {
     REGISTRATION_PAGE,
     PROFILE_PAGE,
     AUTHORS_PAGE,
-    CREATE_POST_PAGE, COMMUNITIES,
+    CREATE_POST_PAGE, COMMUNITIES_PATHNAME,
     COMMUNITY_REGEXP, POST_INFO_REGEXP
 } from "../Constants/dimens.js";
 import {checkToken, getPageHtml, getToken, removeToken} from "../Functions/functions.js";
@@ -43,7 +43,7 @@ class PageController {
             case MAIN_PAGE:
                 pageName = 'MainPage'
                 break
-            case COMMUNITIES:
+            case COMMUNITIES_PATHNAME:
                 pageName = 'CommunityPage'
                 break
             default:

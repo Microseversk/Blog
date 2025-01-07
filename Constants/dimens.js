@@ -6,7 +6,7 @@ export const LOGIN_PAGE = '/login'
 export const PROFILE_PAGE = '/profile'
 export const AUTHORS_PAGE = '/authors'
 export const CREATE_POST_PAGE = '/post/create'
-export const COMMUNITIES = '/communities'
+export const COMMUNITIES_PATHNAME = '/communities'
 export const POST_PAGE = '/post/'
 
 export const COMMUNITY = '/communities/'
