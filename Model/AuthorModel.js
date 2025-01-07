@@ -2,7 +2,7 @@ import {AUTHOR} from "../Constants/ApiUrls.js";
 import {compareAuthors, getPageHtml, normalizeDate} from "../Functions/functions.js";
 import {AuthorDto} from "../Dto/AuthorDto.js";
 import {
-    AUTHOR_TEMPLATE,
+    AUTHOR_TEMPLATE_PATH,
     MALE, MAN, MEDAL_BRONZE, MEDAL_GOLD, MEDAL_SILVER,
     WOMAN,
 } from "../Constants/dimens.js";
@@ -53,7 +53,7 @@ class AuthorModel {
     }
 
     async getAuthorTemplate() {
-        return await getPageHtml(AUTHOR_TEMPLATE)
+        return await getPageHtml(AUTHOR_TEMPLATE_PATH)
     }
 }
 
