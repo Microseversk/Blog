@@ -1,4 +1,4 @@
-import {PROFILE} from "../Constants/ApiUrls.js";
+import {ADDRESS_SEARCH_URL, PROFILE} from "../Constants/ApiUrls.js";
 import { ADDRESS_SELECT_TEMPLATE_PATH, LOGIN_PAGE} from "../Constants/dimens.js";
 
 export function getToken() {
@@ -169,7 +169,7 @@ export async function addAddressSelect(parentAddress, currentAddressLevel, addre
 
     $(newSelect).select2({
         ajax: {
-            url: "https://blog.kreosoft.space/api/address/search",
+            url: ADDRESS_SEARCH_URL,
             dataType: 'json',
             type: 'GET',
             data: function (params) {

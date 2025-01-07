@@ -25,5 +25,5 @@ export const COMMENT = 'https://blog.kreosoft.space/api/comment/'
 export const AUTHOR = 'https://blog.kreosoft.space/api/author/list'
 
 //Address
-export const ADDRESS_SEARCH = 'https://blog.kreosoft.space/api/address/search'
+export const ADDRESS_SEARCH_URL = 'https://blog.kreosoft.space/api/address/search'
 export const ADDRESS_CHAIN = 'https://blog.kreosoft.space/api/address/chain'
