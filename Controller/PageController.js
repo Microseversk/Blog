@@ -22,9 +22,9 @@ class PageController {
     }
 
     async route() {
-        const url = window.location.pathname
+        const pathname = window.location.pathname
         let pageName
-        switch (url) {
+        switch (pathname) {
             case CREATE_POST_PAGE:
                 pageName = 'CreatePostPage'
                 break;
@@ -48,9 +48,9 @@ class PageController {
                 break
             default:
 
-                if (COMMUNITY_REGEXP.test(url)) {
+                if (COMMUNITY_REGEXP.test(pathname)) {
                     pageName = 'CommunityInfoPage'
-                }else if(POST_INFO_REGEXP.test(url)){
+                }else if(POST_INFO_REGEXP.test(pathname)){
                     pageName = 'PostInfoPage'
                 }
                 else {
