@@ -7,16 +7,16 @@ class CommunitiesView {
     async renderCommunities(template, communities, callback) {
         let communitiesList = document.querySelector('#communities-list')
         communities.forEach(community => {
-            let container = document.createElement('div')
-            container.innerHTML = template.trim()
+            let communityListElement = document.createElement('div')
+            communityListElement.innerHTML = template.trim()
 
-            container.querySelector('#community-template-name').innerText = community.name
-            container.querySelector('#community-template-name').style.cursor = 'pointer'
-            container.querySelector('#community-template-name').addEventListener('click', () => {
+            communityListElement.querySelector('#community-template-name').innerText = community.name
+            communityListElement.querySelector('#community-template-name').style.cursor = 'pointer'
+            communityListElement.querySelector('#community-template-name').addEventListener('click', () => {
                 window.location.pathname = COMMUNITY + community.id
             })
 
-            let btn = container.querySelector('#community-template-btn')
+            let btn = communityListElement.querySelector('#community-template-btn')
             if (getToken() === null){
                 btn.classList.add('d-none')
             }
@@ -46,7 +46,7 @@ class CommunitiesView {
                     }
                 }
             })
-            communitiesList.appendChild(container)
+            communitiesList.appendChild(communityListElement)
         })
 
 
