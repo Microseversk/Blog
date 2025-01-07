@@ -5,3 +5,4 @@
 /httpRequests/
 .idea/
 .htaccess
+node_modules
