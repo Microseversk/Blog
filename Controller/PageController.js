@@ -58,10 +58,10 @@ class PageController {
                 }
                 break
         }
-        const html = await getPageHtml(pageName)
+        const page = await getPageHtml(pageName)
         const checkResponse = await checkToken(getToken())
 
-        this.view.renderPage(html, checkResponse)
+        this.view.renderPage(page, checkResponse)
     }
 
     async logout() {
