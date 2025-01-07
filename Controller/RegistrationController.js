@@ -1,7 +1,7 @@
 import {RegistrationModel} from "../Model/RegistrationModel.js";
 import {RegistrationView} from "../View/RegistrationView.js";
 import {setToken} from "../Functions/functions.js";
-import {MAIN_PAGE} from "../Constants/dimens.js";
+import {BAD_REQUEST, MAIN_PAGE} from "../Constants/dimens.js";
 
 class RegistrationController {
     model
@@ -20,7 +20,7 @@ class RegistrationController {
             this.view.showErrors(validateResult)
         } else {
             const response = await this.model.sendRegistrationData(registerData)
-            if (response === 400) {
+            if (response === BAD_REQUEST) {
                 this.view.showServerError()
             } else {
                 const token = response.token

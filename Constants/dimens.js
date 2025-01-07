@@ -55,3 +55,7 @@ export const LIKE_COLOR = 'red'
 
 export const SUBSCRIBE = 'subscribe'
 export const UN_SUBSCRIBE = 'unSubscribe'
+
+export const BAD_REQUEST = 400
+export const INTERNAL_SERVER_ERROR = 500
+
