@@ -5,7 +5,7 @@ class CommunitiesView {
 
 
     async renderCommunities(template, communities, callback) {
-        let holder = document.querySelector('#communities-list')
+        let communitiesList = document.querySelector('#communities-list')
         communities.forEach(community => {
             let container = document.createElement('div')
             container.innerHTML = template.trim()
@@ -46,7 +46,7 @@ class CommunitiesView {
                     }
                 }
             })
-            holder.appendChild(container)
+            communitiesList.appendChild(container)
         })
 
 
