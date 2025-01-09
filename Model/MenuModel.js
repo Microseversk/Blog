@@ -1,5 +1,4 @@
 import {POST, TAG} from "../Constants/ApiUrls.js";
-import {PostDto} from "../Dto/PostDto.js";
 import {getPageHtml, getToken} from "../Functions/functions.js";
 import {CURRENT_PAGE_SIZE, POST_TEMPLATE} from "../Constants/dimens.js";
 
@@ -30,8 +29,6 @@ class MenuModel {
     }
     async getPosts(query) {
         try {
-
-            let postList = []
             let url = POST
             if (undefined !== query) {
                 url += "?" + query
@@ -48,26 +45,7 @@ class MenuModel {
             this.currentPage = data.pagination.current
             this.currentPageSize = data.pagination.size
             
-            data.posts.forEach(post => {
-                let newPost = new PostDto()
-                newPost.title = post.title
-                newPost.description = post.description
-                newPost.readingTime = post.readingTime
-                newPost.image = post.image
-                newPost.authorId = post.authorId
-                newPost.author = post.author
-                newPost.communityId = post.communityId
-                newPost.communityName = post.communityName
-                newPost.addressId = post.addressId
-                newPost.likes = post.likes
-                newPost.hasLike = post.hasLike
-                newPost.commentsCount = post.commentsCount
-                newPost.tags = post.tags
-                newPost.id = post.id
-                newPost.createTime = post.createTime
-                postList.push(newPost)
-            })
-            return postList
+            return data.posts
 
         } catch (error) {
             console.error(error)
