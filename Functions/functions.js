@@ -216,9 +216,6 @@ export async function addAddressSelect(parentAddress, currentAddressLevel, addre
         } else {
             addressInfo.push(address)
         }
-        console.log("Текущая цепочка");
-        console.log(addressInfo);
-        console.log("---------------");
 
         const nextData = await (await fetch('https://blog.kreosoft.space/api/address/search?parentObjectId=' + address.id)).json()
         clearSelects(newContainerId)
