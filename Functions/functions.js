@@ -13,18 +13,13 @@ export function removeToken() {
     return window.localStorage.removeItem('jwtToken')
 }
 
-export async function getPageHtml(pageName, responseHandler) {
+export async function getPageHtml(pageName) {
     try {
         const response = await fetch(`../Pages/${pageName}.html`)
         if (!response.ok) {
             throw new Error(`Failed to fetch ${response.status}`)
         }
-        const text = await response.text()
-        if (responseHandler && typeof responseHandler === 'function') {
-            return responseHandler(text)
-        } else {
-            return text
-        }
+        return await response.text()
     } catch (error) {
         console.error(error)
     }
