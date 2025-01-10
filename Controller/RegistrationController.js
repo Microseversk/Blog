@@ -15,19 +15,21 @@ class RegistrationController {
     async register() {
         this.view.clearErrors()
         const registerData = this.view.getRegistrationData()
+        
         const validateResult = this.model.validateRegisterData(registerData)
-        if (validateResultHasErrors(validateResult)) {
+        if (validateResultHasErrors(validateResult)){
             this.view.showErrors(validateResult)
-        } else {
-            const response = await this.model.sendRegistrationData(registerData)
-            if (response === BAD_REQUEST) {
-                this.view.showServerError()
-            } else {
-                const token = response.token
-                setToken(token)
-                window.location.href = MAIN_PAGE
-            }
+            return
         }
+
+        const registrationResponse = await this.model.sendRegistrationData(registerData)
+        if (registrationResponse === BAD_REQUEST) {
+            this.view.showServerError()
+            return
+        }
+
+        setToken(registrationResponse.token)
+        window.location.href = MAIN_PAGE
     }
 }
 
