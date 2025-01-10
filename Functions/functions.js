@@ -1,5 +1,5 @@
-import {PROFILE} from "../Constants/ApiUrls.js";
-import {LOGIN_PAGE} from "../Constants/dimens.js";
+import {ADDRESS_SEARCH_URL, PROFILE} from "../Constants/ApiUrls.js";
+import { ADDRESS_SELECT_TEMPLATE_PATH, LOGIN_PAGE} from "../Constants/dimens.js";
 
 export function getToken() {
     return window.localStorage.getItem('jwtToken')
@@ -145,7 +145,7 @@ export function normalizeDateTime(inputDateTime) {
 export async function addAddressSelect(parentAddress, currentAddressLevel, addressInfo) {
 
     let addressHandler = document.querySelector('#create-post-address-handler');
-    let template = await getPageHtml('/Templates/AddressSelectTemplate');
+    let template = await getPageHtml(ADDRESS_SELECT_TEMPLATE_PATH);
     let newContainerId = 'create-post-address-level-' + currentAddressLevel;
     let newSelectId = 'create-post-select-level-' + currentAddressLevel;
     let newLabelId = 'create-post-label-' + currentAddressLevel;
@@ -169,7 +169,7 @@ export async function addAddressSelect(parentAddress, currentAddressLevel, addre
 
     $(newSelect).select2({
         ajax: {
-            url: "https://blog.kreosoft.space/api/address/search",
+            url: ADDRESS_SEARCH_URL,
             dataType: 'json',
             type: 'GET',
             data: function (params) {

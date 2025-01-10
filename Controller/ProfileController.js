@@ -1,6 +1,6 @@
 import {ProfileView} from "../View/ProfileView.js";
 import {ProfileModel} from "../Model/ProfileModel.js";
-import {MAIN_PAGE} from "../Constants/dimens.js";
+import {BAD_REQUEST, MAIN_PAGE} from "../Constants/dimens.js";
 
 class ProfileController {
     model
@@ -27,7 +27,7 @@ class ProfileController {
                 throw new Error(`Invalid data ${validateResult}`)
             }else{
                 let response = await this.model.sendUserProfileData(newData)
-                if (response === 400){
+                if (response === BAD_REQUEST){
                     return this.view.showUsedEmail()
                 }
                 window.location.href = MAIN_PAGE

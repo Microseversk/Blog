@@ -26,7 +26,7 @@ export const AUTHOR_TEMPLATE_PATH = 'Templates/AuthorTemplate'
 export const POST_TEMPLATE = 'Templates/PostTemplate'
 export const COMMENT_TEMPLATE = 'Templates/CommentTemplate'
 export const SUB_COMMENT_TEMPLATE = 'Templates/SubCommentTemplate'
-
+export const ADDRESS_SELECT_TEMPLATE_PATH = 'Templates/AddressSelectTemplate'
 //Images
 
 export const MAN = '/Images/Man/man.svg'
@@ -55,3 +55,7 @@ export const LIKE_COLOR = 'red'
 
 export const SUBSCRIBE = 'subscribe'
 export const UN_SUBSCRIBE = 'unSubscribe'
+
+export const BAD_REQUEST = 400
+export const INTERNAL_SERVER_ERROR = 500
+

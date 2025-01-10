@@ -1,6 +1,6 @@
 import {MenuController} from "../Controller/MenuController.js";
 import {smoothScrollToTop} from "../Functions/functions.js";
-import {GO_NEXT_PAGE, GO_PREVIOUS_PAGE} from "../Constants/dimens.js";
+import {CREATE_POST_PAGE, GO_NEXT_PAGE, GO_PREVIOUS_PAGE} from "../Constants/dimens.js";
 
 let menuController = new MenuController()
 
@@ -23,6 +23,6 @@ document.querySelector('#filter-page-post-size').addEventListener('change',  asy
 })
 
 document.querySelector('#btn-new-post').addEventListener('click', () => {
-    window.location.href = '/post/create'
+    window.location.href = CREATE_POST_PAGE
 })
 

@@ -1,7 +1,7 @@
 import {LoginModel} from "../Model/LoginModel.js";
 import {LoginView} from "../View/LoginView.js";
 import {setToken} from "../Functions/functions.js";
-import {MAIN_PAGE} from "../Constants/dimens.js";
+import {BAD_REQUEST, INTERNAL_SERVER_ERROR, MAIN_PAGE} from "../Constants/dimens.js";
 
 class LoginController {
     model
@@ -20,10 +20,10 @@ class LoginController {
             this.view.showErrors(validateResult)
         } else {
             const response = await this.model.sendLoginData(loginData)
-            if (response === 400) {
+            if (response === BAD_REQUEST) {
                 this.view.showServerError()
             }
-            else if(response === 500){
+            else if(response === INTERNAL_SERVER_ERROR){
                 console.log('InternalServerError')
                 }
              else {
