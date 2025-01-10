@@ -29,14 +29,14 @@ class CreatePostView {
   }
   getCreatePostData() {
     let tags = Array.from(this.inputTags.selectedOptions).map((option) => option.value);
-    return new CreatePostDto(
-      this.inputTitle.value.trim(),
-      this.inputDescription.value.trim(),
-      this.inputReadingTime.value,
-      this.inputImage.value.trim() !== '' ? this.inputImage.value : undefined,
-      this.inputCommunityId.value !== '' ? this.inputCommunityId.value : undefined,
+    return new CreatePostDto({
+      title: this.inputTitle.value.trim(),
+      description: this.inputDescription.value.trim(),
+      readingTime: this.inputReadingTime.value,
+      image: this.inputImage.value.trim() !== '' ? this.inputImage.value : undefined,
+      communityId: this.inputCommunityId.value !== '' ? this.inputCommunityId.value : undefined,
       tags
-    );
+    });
   }
 
   showErrors(validateResult) {
@@ -61,9 +61,7 @@ class CreatePostView {
   }
 
   renderCommunityValue(communityValue) {
-    const option = document
-      .querySelector('#create-post-community')
-      .querySelector(`option[value="${communityValue}"]`);
+    const option = document.querySelector('#create-post-community').querySelector(`option[value="${communityValue}"]`);
     if (option) {
       option.selected = true;
     }

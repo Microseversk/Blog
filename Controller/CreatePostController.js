@@ -20,7 +20,7 @@ class CreatePostController {
   constructor() {
     this.#model = new CreatePostModel();
     this.#view = new CreatePostView();
-    this.query = new URLSearchParams(window.location.search);
+    this.#currentQuery = new URLSearchParams(window.location.search);
     this.#currentAddressLevel = 1;
     this.#addressInfo = [
       {

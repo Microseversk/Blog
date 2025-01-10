@@ -9,7 +9,7 @@ class CreatePostDto {
   addressId = undefined;
   tags = [];
 
-  constructor(title, description, readingTime, image, communityId, tags) {
+  constructor({ title, description, readingTime, image, communityId, tags }) {
     this.title = title;
     this.description = description;
     this.readingTime = readingTime;
