@@ -1,6 +1,7 @@
 import {ProfileView} from "../View/ProfileView.js";
 import {ProfileModel} from "../Model/ProfileModel.js";
 import {MAIN_PAGE} from "../Constants/dimens.js";
+import { validateResultHasErrors } from '../Functions/functions.js'
 
 class ProfileController {
     model
@@ -22,7 +23,7 @@ class ProfileController {
             const newData = this.view.getNewProfileData()
             const validateResult = this.model.validateNewData(newData)
 
-            if (Object.values(validateResult).some(value => value === false)) {
+            if (validateResultHasErrors(validateResult)) {
                 this.view.showErrors(validateResult)
                 throw new Error(`Invalid data ${validateResult}`)
             }else{

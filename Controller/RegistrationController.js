@@ -1,6 +1,6 @@
 import {RegistrationModel} from "../Model/RegistrationModel.js";
 import {RegistrationView} from "../View/RegistrationView.js";
-import {setToken} from "../Functions/functions.js";
+import {setToken, validateResultHasErrors} from "../Functions/functions.js";
 import {MAIN_PAGE} from "../Constants/dimens.js";
 
 class RegistrationController {
@@ -16,7 +16,7 @@ class RegistrationController {
         this.view.clearErrors()
         const registerData = this.view.getRegistrationData()
         const validateResult = this.model.validateRegisterData(registerData)
-        if (Object.values(validateResult).some(value => value === false)) {
+        if (validateResultHasErrors(validateResult)) {
             this.view.showErrors(validateResult)
         } else {
             const response = await this.model.sendRegistrationData(registerData)
