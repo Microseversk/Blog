@@ -14,12 +14,12 @@ import {
 import { checkToken, getPageHtml, getToken, removeToken } from '../Functions/functions.js';
 
 class PageController {
-  model;
-  view;
+  #model;
+  #view;
 
   constructor() {
-    this.model = new PageModel();
-    this.view = new PageView();
+    this.#model = new PageModel();
+    this.#view = new PageView();
   }
 
   async route() {
@@ -60,12 +60,12 @@ class PageController {
     const page = await getPageHtml(pageName);
     const checkResponse = await checkToken(getToken());
 
-    this.view.renderPage(page, checkResponse);
+    this.#view.renderPage(page, checkResponse);
   }
 
   async logout() {
     removeToken();
-    await this.model.logoutUser();
+    await this.#model.logoutUser();
     window.location.pathname = LOGIN_PAGE;
   }
 }
