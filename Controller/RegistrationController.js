@@ -4,27 +4,27 @@ import { setToken, validateResultHasErrors } from '../Functions/functions.js';
 import { BAD_REQUEST, MAIN_PAGE } from '../Constants/dimens.js';
 
 class RegistrationController {
-  model;
-  view;
+  #model;
+  #view;
 
   constructor() {
-    this.model = new RegistrationModel();
-    this.view = new RegistrationView();
+    this.#model = new RegistrationModel();
+    this.#view = new RegistrationView();
   }
 
   async register() {
-    this.view.clearErrors();
-    const registerData = this.view.getRegistrationData();
+    this.#view.clearErrors();
+    const registerData = this.#view.getRegistrationData();
 
-    const validateResult = this.model.validateRegisterData(registerData);
+    const validateResult = this.#model.validateRegisterData(registerData);
     if (validateResultHasErrors(validateResult)) {
-      this.view.showErrors(validateResult);
+      this.#view.showErrors(validateResult);
       return;
     }
 
-    const registrationResponse = await this.model.sendRegistrationData(registerData);
+    const registrationResponse = await this.#model.sendRegistrationData(registerData);
     if (registrationResponse === BAD_REQUEST) {
-      this.view.showServerError();
+      this.#view.showServerError();
       return;
     }
 

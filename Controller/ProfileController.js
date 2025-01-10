@@ -4,32 +4,32 @@ import { BAD_REQUEST, MAIN_PAGE } from '../Constants/dimens.js';
 import { validateResultHasErrors } from '../Functions/functions.js';
 
 class ProfileController {
-  model;
-  view;
+  #model;
+  #view;
 
   constructor() {
-    this.view = new ProfileView();
-    this.model = new ProfileModel();
+    this.#view = new ProfileView();
+    this.#model = new ProfileModel();
   }
 
   async init() {
-    let data = await this.model.getUserProfileData();
-    this.view.renderProfile(data);
+    let data = await this.#model.getUserProfileData();
+    this.#view.renderProfile(data);
   }
 
   async UpdateUserProfile() {
     try {
-      this.view.clearErrors();
-      const newData = this.view.getNewProfileData();
-      const validateResult = this.model.validateNewData(newData);
+      this.#view.clearErrors();
+      const newData = this.#view.getNewProfileData();
+      const validateResult = this.#model.validateNewData(newData);
 
       if (validateResultHasErrors(validateResult)) {
-        this.view.showErrors(validateResult);
+        this.#view.showErrors(validateResult);
         throw new Error(`Invalid data ${validateResult}`);
       } else {
-        let response = await this.model.sendUserProfileData(newData);
+        let response = await this.#model.sendUserProfileData(newData);
         if (response === BAD_REQUEST) {
-          return this.view.showUsedEmail();
+          return this.#view.showUsedEmail();
         }
         window.location.href = MAIN_PAGE;
       }
