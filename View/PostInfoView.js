@@ -128,7 +128,10 @@ class PostInfoView {
     commentTemplate,
     subCommentTemplate,
     rootComments,
-    checkResponse = { id: '', email: '' }
+    checkResponse = {
+      id: '',
+      email: ''
+    }
   ) {
     rootComments.forEach((comment) => {
       let commentContainer = this.initComment(comment, commentTemplate, checkResponse, postId);
@@ -223,7 +226,9 @@ class PostInfoView {
       .addEventListener('click', async () => {
         await fetch(COMMENT + comment.id, {
           method: 'DELETE',
-          headers: { Authorization: 'Bearer ' + getToken() }
+          headers: {
+            Authorization: 'Bearer ' + getToken()
+          }
         });
         window.location.reload();
       });
@@ -268,7 +273,9 @@ class PostInfoView {
                     'Content-type': 'application/json',
                     Authorization: 'Bearer ' + getToken()
                   },
-                  body: JSON.stringify({ content: text })
+                  body: JSON.stringify({
+                    content: text
+                  })
                 });
                 window.location.reload();
               }
@@ -319,7 +326,10 @@ class PostInfoView {
                     'Content-type': 'application/json',
                     Authorization: 'Bearer ' + getToken()
                   },
-                  body: JSON.stringify({ content: text, parentId: comment.id })
+                  body: JSON.stringify({
+                    content: text,
+                    parentId: comment.id
+                  })
                 });
 
                 window.location.reload();
@@ -346,7 +356,10 @@ class PostInfoView {
     };
     await fetch(POST_ID + postId + '/comment', {
       method: 'POST',
-      headers: { 'Content-type': 'application/json', Authorization: 'Bearer ' + getToken() },
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: 'Bearer ' + getToken()
+      },
       body: JSON.stringify(data)
     });
     window.location.reload();

@@ -5,12 +5,18 @@ import { COMMENT_TEMPLATE, SUB_COMMENT_TEMPLATE } from '../Constants/dimens.js';
 class PostInfoModel {
   async getPostInfo(postId) {
     let postInfo = await (
-      await fetch(POST_ID + postId, { headers: { Authorization: 'Bearer ' + getToken() } })
+      await fetch(POST_ID + postId, {
+        headers: {
+          Authorization: 'Bearer ' + getToken()
+        }
+      })
     ).json();
     for (let comment of postInfo.comments) {
       comment.subComments = await (
         await fetch(COMMENT + comment.id + '/tree', {
-          headers: { Authorization: 'Bearer ' + getToken() }
+          headers: {
+            Authorization: 'Bearer ' + getToken()
+          }
         })
       ).json();
     }
@@ -20,7 +26,9 @@ class PostInfoModel {
   async getSubComments(commentId) {
     return (
       await fetch(COMMENT + commentId + '/tree', {
-        headers: { Authorization: 'Bearer ' + getToken() }
+        headers: {
+          Authorization: 'Bearer ' + getToken()
+        }
       })
     ).json();
   }
@@ -31,7 +39,9 @@ class PostInfoModel {
     }
     return (
       await fetch(ADDRESS_CHAIN + `?objectGuid=${addressId}`, {
-        headers: { Authorization: 'Bearer ' + getToken() }
+        headers: {
+          Authorization: 'Bearer ' + getToken()
+        }
       })
     ).json();
   }

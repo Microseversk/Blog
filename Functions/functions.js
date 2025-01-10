@@ -99,7 +99,10 @@ export async function checkToken(token, redirect = false) {
       throw new Error(`Failed to fetch ${response.status}`);
     }
     const userProfile = await response.json();
-    return { email: userProfile.email, id: userProfile.id };
+    return {
+      email: userProfile.email,
+      id: userProfile.id
+    };
   } catch (error) {}
 }
 
@@ -166,7 +169,12 @@ export async function addAddressSelect(parentAddress, currentAddressLevel, addre
         };
       },
       processResults: function (data) {
-        data.unshift({ objectId: '', text: 'Не выбрано', objectGuid: '', objectLevelText: '' });
+        data.unshift({
+          objectId: '',
+          text: 'Не выбрано',
+          objectGuid: '',
+          objectLevelText: ''
+        });
         return {
           results: data.map((item) => ({
             id: item.objectId,

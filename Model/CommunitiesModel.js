@@ -13,7 +13,11 @@ class CommunitiesModel {
 
       if (await checkToken(getToken())) {
         let userRoles = await (
-          await fetch(COMMUNITY_MY, { headers: { Authorization: 'Bearer ' + getToken() } })
+          await fetch(COMMUNITY_MY, {
+            headers: {
+              Authorization: 'Bearer ' + getToken()
+            }
+          })
         ).json();
 
         const userRolesMap = userRoles.reduce((acc, userRole) => {
@@ -29,7 +33,10 @@ class CommunitiesModel {
         });
       }
 
-      return communities.map((community) => ({ ...community, userRole: null }));
+      return communities.map((community) => ({
+        ...community,
+        userRole: null
+      }));
     } catch (error) {
       console.error(error);
     }
@@ -40,14 +47,18 @@ class CommunitiesModel {
       if (actionType === SUBSCRIBE) {
         await fetch(`${COMMUNITY}/${communityId}/subscribe`, {
           method: 'POST',
-          headers: { Authorization: 'Bearer ' + getToken() }
+          headers: {
+            Authorization: 'Bearer ' + getToken()
+          }
         });
         return true;
       }
       if (actionType === UN_SUBSCRIBE) {
         await fetch(`${COMMUNITY}/${communityId}/unsubscribe`, {
           method: 'DELETE',
-          headers: { Authorization: 'Bearer ' + getToken() }
+          headers: {
+            Authorization: 'Bearer ' + getToken()
+          }
         });
         return true;
       }

@@ -5,6 +5,7 @@ class CreatePostView {
   inputDescription = document.querySelector('#create-post-description');
   inputReadingTime = document.querySelector('#create-post-readTime');
   inputImage = document.querySelector('#create-post-image');
+
   inputCommunityId = document.querySelector('#create-post-community');
   inputTags = document.querySelector('#create-post-tags');
   inputAddressId = document.querySelector('#create-post-region');
