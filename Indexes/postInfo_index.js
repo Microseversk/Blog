@@ -1,5 +1,5 @@
-import {PostInfoController} from "../Controller/PostInfoController.js";
+import { PostInfoController } from '../Controller/PostInfoController.js';
 
-let postInfoController = new PostInfoController()
+let postInfoController = new PostInfoController();
 
-await postInfoController.init()
+await postInfoController.init();

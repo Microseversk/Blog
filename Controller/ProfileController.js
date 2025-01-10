@@ -1,44 +1,42 @@
-import {ProfileView} from "../View/ProfileView.js";
-import {ProfileModel} from "../Model/ProfileModel.js";
-import {BAD_REQUEST,MAIN_PAGE} from "../Constants/dimens.js";
-import { validateResultHasErrors } from '../Functions/functions.js'
+import { ProfileView } from '../View/ProfileView.js';
+import { ProfileModel } from '../Model/ProfileModel.js';
+import { BAD_REQUEST, MAIN_PAGE } from '../Constants/dimens.js';
+import { validateResultHasErrors } from '../Functions/functions.js';
 
 class ProfileController {
-    model
-    view
+  model;
+  view;
 
-    constructor() {
-        this.view = new ProfileView()
-        this.model = new ProfileModel()
-    }
+  constructor() {
+    this.view = new ProfileView();
+    this.model = new ProfileModel();
+  }
 
-    async init() {
-        let data = await this.model.getUserProfileData()
-        this.view.renderProfile(data)
-    }
+  async init() {
+    let data = await this.model.getUserProfileData();
+    this.view.renderProfile(data);
+  }
 
-    async UpdateUserProfile() {
-        try {
-            this.view.clearErrors()
-            const newData = this.view.getNewProfileData()
-            const validateResult = this.model.validateNewData(newData)
+  async UpdateUserProfile() {
+    try {
+      this.view.clearErrors();
+      const newData = this.view.getNewProfileData();
+      const validateResult = this.model.validateNewData(newData);
 
-            if (validateResultHasErrors(validateResult)) {
-                this.view.showErrors(validateResult)
-                throw new Error(`Invalid data ${validateResult}`)
-            }else{
-                let response = await this.model.sendUserProfileData(newData)
-                if (response === BAD_REQUEST){
-                    return this.view.showUsedEmail()
-                }
-                window.location.href = MAIN_PAGE
-            }
-        }catch (error){
-            console.error(error)
+      if (validateResultHasErrors(validateResult)) {
+        this.view.showErrors(validateResult);
+        throw new Error(`Invalid data ${validateResult}`);
+      } else {
+        let response = await this.model.sendUserProfileData(newData);
+        if (response === BAD_REQUEST) {
+          return this.view.showUsedEmail();
         }
-
-
+        window.location.href = MAIN_PAGE;
+      }
+    } catch (error) {
+      console.error(error);
     }
+  }
 }
 
-export {ProfileController}
+export { ProfileController };

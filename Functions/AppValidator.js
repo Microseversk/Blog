@@ -1,56 +1,54 @@
- export class AppValidator {
+export class AppValidator {
+  NameIsValid(name) {
+    return name.trim().length >= 1 && /[a-zA-Zа-яА-Я]/.test(name);
+  }
 
+  PasswordIsValid(password) {
+    return password.length >= 6 && /\d/.test(password);
+  }
 
-    NameIsValid(name) {
-        return name.trim().length >= 1 && /[a-zA-Zа-яА-Я]/.test(name);
+  EmailIsValid(email) {
+    let pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(email);
+  }
+
+  BirthDateIsValid(birthDate) {
+    if (birthDate === undefined || birthDate.length === 0) {
+      return true;
     }
+    let currentDate = new Date().toISOString();
+    return birthDate < currentDate;
+  }
 
-    PasswordIsValid(password) {
-        return password.length >= 6 && /\d/.test(password);
+  PhoneNumberIsValid(phoneNumber) {
+    if (phoneNumber === undefined || phoneNumber.length === 0) {
+      return true;
     }
+    let pattern = /^\+?7\d{3}\d{3}\d{2}\d{2}$/;
 
-    EmailIsValid(email) {
-        let pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        return pattern.test(email)
+    return pattern.test(phoneNumber);
+  }
+
+  GenderIsValid(gender) {
+    if (gender === undefined || gender.length === 0) {
+      return true;
     }
+    return ['Male', 'Female'].includes(gender);
+  }
 
-    BirthDateIsValid(birthDate){
-        if (birthDate === undefined || birthDate.length === 0){
-            return true
-        }
-        let currentDate = new Date().toISOString()
-        return birthDate < currentDate
-    }
+  TitleDescriptionIsValid(text) {
+    return text.length >= 5;
+  }
 
-    PhoneNumberIsValid(phoneNumber){
-        if (phoneNumber === undefined || phoneNumber.length === 0){
-            return true
-        }
-        let pattern = /^\+?7\d{3}\d{3}\d{2}\d{2}$/
+  ReadingTimeIsValid(time) {
+    return parseInt(time) >= 0;
+  }
 
-        return pattern.test(phoneNumber)
-    }
+  UrlIsValid(url) {
+    return /^https?:\/\/.*/.test(url);
+  }
 
-    GenderIsValid(gender){
-        if (gender === undefined || gender.length === 0){
-            return true;
-        }
-        return ['Male','Female'].includes(gender)
-    }
-
-    TitleDescriptionIsValid(text){
-        return text.length >= 5
-    }
-
-    ReadingTimeIsValid(time){
-        return parseInt(time) >= 0
-    }
-
-    UrlIsValid(url){
-        return /^https?:\/\/.*/.test(url)
-    }
-
-    TagsIsValid(tags){
-        return tags.length > 0
-    }
+  TagsIsValid(tags) {
+    return tags.length > 0;
+  }
 }

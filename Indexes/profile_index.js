@@ -1,10 +1,9 @@
-import {ProfileController} from "../Controller/ProfileController.js";
+import { ProfileController } from '../Controller/ProfileController.js';
 
+let profileController = new ProfileController();
 
-let profileController = new ProfileController()
+await profileController.init();
 
-await profileController.init()
-
-document.querySelector('#btn-profile-save').addEventListener('click', async () =>{
-    await profileController.UpdateUserProfile()
-})
+document.querySelector('#btn-profile-save').addEventListener('click', async () => {
+  await profileController.UpdateUserProfile();
+});

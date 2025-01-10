@@ -1,6 +1,5 @@
-import {CommunitiesController} from "../Controller/CommunitiesController.js";
+import { CommunitiesController } from '../Controller/CommunitiesController.js';
 
-let communitiesController = new CommunitiesController()
+let communitiesController = new CommunitiesController();
 
-await communitiesController.init()
-
+await communitiesController.init();

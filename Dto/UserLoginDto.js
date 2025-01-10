@@ -1,21 +1,21 @@
-import {AppValidator} from "../Functions/AppValidator.js";
+import { AppValidator } from '../Functions/AppValidator.js';
 
 class UserLoginDto {
-    email
-    password
+  email;
+  password;
 
-    constructor(email, password) {
-        this.email = email
-        this.password = password
-    }
+  constructor(email, password) {
+    this.email = email;
+    this.password = password;
+  }
 
-    isValid(){
-        let validator = new AppValidator()
-        return {
-            email: validator.EmailIsValid(this.email),
-            password: this.password.length > 0
-        }
-    }
+  isValid() {
+    let validator = new AppValidator();
+    return {
+      email: validator.EmailIsValid(this.email),
+      password: this.password.length > 0
+    };
+  }
 }
 
-export {UserLoginDto}
+export { UserLoginDto };

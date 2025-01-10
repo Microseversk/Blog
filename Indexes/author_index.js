@@ -1,7 +1,5 @@
-import {AuthorController} from "../Controller/AuthorController.js";
+import { AuthorController } from '../Controller/AuthorController.js';
 
-let authorController = new AuthorController()
+let authorController = new AuthorController();
 
-
-await authorController.init()
-
+await authorController.init();

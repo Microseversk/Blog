@@ -1,75 +1,73 @@
-import {PageModel} from '../Model/PageModel.js'
-import {PageView} from '../View/PageView.js'
+import { PageModel } from '../Model/PageModel.js';
+import { PageView } from '../View/PageView.js';
 import {
-    MAIN_PAGE,
-    LOGIN_PAGE,
-    REGISTRATION_PAGE,
-    PROFILE_PAGE,
-    AUTHORS_PAGE,
-    CREATE_POST_PAGE, COMMUNITIES_PATHNAME,
-    COMMUNITY_REGEXP, POST_INFO_REGEXP
-} from "../Constants/dimens.js";
-import {checkToken, getPageHtml, getToken, removeToken} from "../Functions/functions.js";
-
+  MAIN_PAGE,
+  LOGIN_PAGE,
+  REGISTRATION_PAGE,
+  PROFILE_PAGE,
+  AUTHORS_PAGE,
+  CREATE_POST_PAGE,
+  COMMUNITIES_PATHNAME,
+  COMMUNITY_REGEXP,
+  POST_INFO_REGEXP
+} from '../Constants/dimens.js';
+import { checkToken, getPageHtml, getToken, removeToken } from '../Functions/functions.js';
 
 class PageController {
-    model
-    view
+  model;
+  view;
 
-    constructor() {
-        this.model = new PageModel()
-        this.view = new PageView()
-    }
+  constructor() {
+    this.model = new PageModel();
+    this.view = new PageView();
+  }
 
-    async route() {
-        const pathname = window.location.pathname
-        let pageName
-        switch (pathname) {
-            case CREATE_POST_PAGE:
-                pageName = 'CreatePostPage'
-                break;
-            case REGISTRATION_PAGE:
-                pageName = 'RegistrationPage'
-                break;
-            case LOGIN_PAGE:
-                pageName = 'LoginPage'
-                break;
-            case PROFILE_PAGE:
-                pageName = 'UserProfilePage'
-                break;
-            case AUTHORS_PAGE:
-                pageName = 'AuthorsPage'
-                break;
-            case MAIN_PAGE:
-                pageName = 'MainPage'
-                break
-            case COMMUNITIES_PATHNAME:
-                pageName = 'CommunityPage'
-                break
-            default:
-
-                if (COMMUNITY_REGEXP.test(pathname)) {
-                    pageName = 'CommunityInfoPage'
-                }else if(POST_INFO_REGEXP.test(pathname)){
-                    pageName = 'PostInfoPage'
-                }
-                else {
-                    pageName = 'NotFoundPage'
-                }
-                break
+  async route() {
+    const pathname = window.location.pathname;
+    let pageName;
+    switch (pathname) {
+      case CREATE_POST_PAGE:
+        pageName = 'CreatePostPage';
+        break;
+      case REGISTRATION_PAGE:
+        pageName = 'RegistrationPage';
+        break;
+      case LOGIN_PAGE:
+        pageName = 'LoginPage';
+        break;
+      case PROFILE_PAGE:
+        pageName = 'UserProfilePage';
+        break;
+      case AUTHORS_PAGE:
+        pageName = 'AuthorsPage';
+        break;
+      case MAIN_PAGE:
+        pageName = 'MainPage';
+        break;
+      case COMMUNITIES_PATHNAME:
+        pageName = 'CommunityPage';
+        break;
+      default:
+        if (COMMUNITY_REGEXP.test(pathname)) {
+          pageName = 'CommunityInfoPage';
+        } else if (POST_INFO_REGEXP.test(pathname)) {
+          pageName = 'PostInfoPage';
+        } else {
+          pageName = 'NotFoundPage';
         }
-        const page = await getPageHtml(pageName)
-        const checkResponse = await checkToken(getToken())
-
-        this.view.renderPage(page, checkResponse)
+        break;
     }
+    const page = await getPageHtml(pageName);
+    const checkResponse = await checkToken(getToken());
 
-    async logout() {
-        removeToken()
-        await this.model.logoutUser()
-        window.location.pathname = LOGIN_PAGE
-    }
+    this.view.renderPage(page, checkResponse);
+  }
 
+  async logout() {
+    removeToken();
+    await this.model.logoutUser();
+    window.location.pathname = LOGIN_PAGE;
+  }
 }
 
-export {PageController}
+export { PageController };
