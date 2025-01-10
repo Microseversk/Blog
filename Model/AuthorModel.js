@@ -1,6 +1,5 @@
 import {AUTHOR} from "../Constants/ApiUrls.js";
 import {compareAuthors, getPageHtml, normalizeDate} from "../Functions/functions.js";
-import {AuthorDto} from "../Dto/AuthorDto.js";
 import {
     AUTHOR_TEMPLATE_PATH,
     MALE, MAN, MEDAL_BRONZE, MEDAL_GOLD, MEDAL_SILVER,
@@ -19,30 +18,18 @@ class AuthorModel {
             })
             let data = (await response.json()).sort(compareAuthors)
             data.forEach((author, index) => {
-                let newAuthor = new AuthorDto()
-                newAuthor.birthDate = normalizeDate(author.birthDate)
-                newAuthor.created = 'Cоздан: ' + normalizeDate(author.created)
-                newAuthor.posts = 'Постов: ' + author.posts
-                newAuthor.likes = 'Лайков: ' + author.likes
-                newAuthor.gender = author.gender
-                newAuthor.fullName = author.fullName
-                newAuthor.position = index + 1
+                const newAuthor = {
+                birthDate: normalizeDate(author.birthDate),
+                created: 'Cоздан: ' + normalizeDate(author.created),
+                posts: 'Постов: ' + author.posts,
+                likes: 'Лайков: ' + author.likes,
+                gender: author.gender,
+                fullName: author.fullName,
+                position: index + 1,
+                image: (author.gender === MALE) ? MAN : WOMAN,
+                medal: [MEDAL_GOLD, MEDAL_SILVER, MEDAL_BRONZE][index] || ""
+                } 
 
-                newAuthor.image = (author.gender === MALE) ? MAN : WOMAN
-
-                switch (newAuthor.position) {
-                    case 1:
-                        newAuthor.medal = MEDAL_GOLD
-                        break
-                    case 2:
-                        newAuthor.medal = MEDAL_SILVER
-                        break
-                    case 3:
-                        newAuthor.medal = MEDAL_BRONZE
-                        break
-                    default:
-                        newAuthor.medal = ""
-                }
                 authorList.push(newAuthor)
             })
             return authorList.sort((a,b) => a.fullName.localeCompare(b.fullName, 'en-US'))
