@@ -252,3 +252,7 @@ export function clearSelects(selectRef) {
         newArray.forEach(child => addressHandler.appendChild(child));
     }
 }
+
+export function validateResultHasErrors(validateResult) {
+    return Object.values(validateResult).some(value => value === false)
+}

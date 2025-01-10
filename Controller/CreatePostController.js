@@ -1,7 +1,7 @@
 import {CreatePostModel} from "../Model/CreatePostModel.js";
 import {CreatePostView} from "../View/CreatePostView.js";
 import {MAIN_PAGE} from "../Constants/dimens.js";
-import {addAddressSelect, checkToken, getPageHtml, getToken, smoothScrollToBottom} from "../Functions/functions.js";
+import {addAddressSelect, checkToken, getPageHtml, getToken, smoothScrollToBottom, validateResultHasErrors} from "../Functions/functions.js";
 
 class CreatePostController {
     model
@@ -48,11 +48,10 @@ class CreatePostController {
 
         const validateResult = this.model.validateCreatePostData(data)
 
-        if (Object.values(validateResult).some(value => value === false)) {
+        if (validateResultHasErrors(validateResult)){
             this.view.showErrors(validateResult)
             return
         }
-
 
         await this.model.sendNewPostData(data)
         window.location.href = MAIN_PAGE
