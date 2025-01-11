@@ -25,6 +25,7 @@ export async function getPageHtml(pageName) {
   }
 }
 
+//TODO: TEST
 export function sortAuthorsByRelevance(firstAuthor, secondAuthor) {
   const criteria = [
     { key: 'posts', order: 'desc' },
