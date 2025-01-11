@@ -25,16 +25,16 @@ export async function getPageHtml(pageName) {
   }
 }
 
-export function compareAuthors(a, b) {
-  if (a.posts > b.posts) {
-    return -1;
-  } else if (a.posts < b.posts) {
-    return 1;
-  }
-  if (a.likes > b.likes) {
-    return -1;
-  } else if (a.likes < b.likes) {
-    return 1;
+export function sortAuthorsByRelevance(firstAuthor, secondAuthor) {
+  const criteria = [
+    { key: 'posts', order: 'desc' },
+    { key: 'likes', order: 'desc' }
+  ];
+
+  for (const { key, order } of criteria) {
+    const direction = order === 'desc' ? -1 : 1;
+    if (firstAuthor[key] > secondAuthor[key]) return direction;
+    if (firstAuthor[key] < secondAuthor[key]) return -direction;
   }
   return 0;
 }
